@@ -13,23 +13,6 @@ function App() {
   console.log(initialEmails)
   const [emails, setEmails] = useState(initialEmails)
 
-  const inboxEmails = emails.map((printEmail) => {
-    return(
-      <li className="email">
-        <div className="select">
-          <input className="select-checkbox" type="checkbox" />
-        </div>
-        <div className="star">
-          <input className="star-checkbox" type="checkbox" />
-        </div>
-        <div className="sender">{printEmail.sender}</div>
-        <div className="title">{printEmail.title}</div>
-      </li>
-    )
-  })
-
-  
-
   return (
     <div className="app">
       <Header />
@@ -50,12 +33,26 @@ function App() {
               id="hide-read"
               type="checkbox"
               checked={false}
-              
             />
           </li>
         </ul>
       </nav>
-      <main className="emails">{inboxEmails}</main>
+      <main className="emails">
+        <ul>
+          {emails.map((email,index) =>(
+            <li className='email'key={index}>
+              <div className="select">
+             <input className="select-checkbox" type="checkbox" />
+             </div>
+              <div className="star">
+               <input className="star-checkbox" type="checkbox" /> 
+                </div>
+            <div className="sender">{email.sender}</div>
+             <div className="title">{email.title}</div>
+            </li>
+          ))}
+        </ul>
+      </main>
     </div>
   )
 }
